@@ -5,9 +5,11 @@
 <div align="center"><img src="https://img.shields.io/badge/WeChat-yamolv-green.svg?logo=Wechat"/>&ensp;<img src="https://img.shields.io/badge/%E7%BD%97%E6%B4%8B%E6%BC%BE-yamolv%40qq.com-red.svg?logo=Tencent%20QQ"/></div>
 
 ## TODO
-- [ ] 天气城市自由选取
-- [ ] 邮件发送
-- [ ] HTML模板配置
-- [ ] 《一个》每日信息获取
+- [x] 天气城市自由选取
+- [x] 邮件发送
+- [x] HTML模板配置
+- [x] 《一个》每日信息获取
 - [ ] 定时任务
+- [ ] 收件人持久化
+- [ ] 提示个性化
 - [ ] Java8特性分支

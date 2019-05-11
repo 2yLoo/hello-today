@@ -1,7 +1,6 @@
 package com.yy.hellotoday.util;
 
 import com.yy.hellotoday.HelloTodayWeatherApplicationTests;
-import com.yy.hellotoday.dto.HelloToday;
 import com.yy.hellotoday.model.TodayWeather;
 import com.yy.hellotoday.service.TodayService;
 import org.junit.Test;
