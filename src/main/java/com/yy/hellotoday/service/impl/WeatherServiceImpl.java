@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -45,11 +46,11 @@ public class WeatherServiceImpl implements WeatherService {
             county = WeatherConstant.DEFAULT_COUNTY;
         }
         // 进行中文的URL编码
-        province = java.net.URLEncoder.encode(province, "UTF-8");
-        city = java.net.URLEncoder.encode(city, "UTF-8");
+        province = URLEncoder.encode(province, "UTF-8");
+        city = URLEncoder.encode(city, "UTF-8");
         String params = String.format("&province=%s&city=%s", province, city);
         if (!StringUtils.isEmpty(county)) {
-            county = java.net.URLEncoder.encode(county, "UTF-8");
+            county = URLEncoder.encode(county, "UTF-8");
             params +="&county="+county;
         }
 
