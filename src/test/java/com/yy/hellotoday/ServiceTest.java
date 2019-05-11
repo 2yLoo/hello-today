@@ -19,6 +19,6 @@ public class ServiceTest extends HelloTodayApplicationTests {
 
     @Test
     public void testSaveWeather() throws IOException {
-        weatherService.saveWeather();
+        weatherService.saveWeather("湖南", "长沙", "天心");
     }
 }

@@ -9,6 +9,26 @@ package com.yy.hellotoday.constant;
 public interface WeatherConstant {
 
     /**
+     * Url
+     */
+    String URL_WITHOUT_TIMESTAMP = "https://wis.qq.com/weather/common?source=pc&weather_type=observe%7Cforecast_1h%7Cforecast_24h%7Cindex%7Calarm%7Climit%7Ctips%7Crise&callback=jQuery11130984566822418339_1557567295285&_=1557567295293";
+    /**
+     * Url
+     */
+    String URL = "https://wis.qq.com/weather/common?source=pc&weather_type=observe%7Cforecast_1h%7Cforecast_24h%7Cindex%7Calarm%7Climit%7Ctips%7Crise";
+    /**
+     * 默认省份
+     */
+    String DEFAULT_PROVINCE = "广东";
+    /**
+     * 默认城市
+     */
+    String DEFAULT_CITY = "深圳";
+    /**
+     * 默认区/县
+     */
+    String DEFAULT_COUNTY = "南山";
+    /**
      * 白天天气图标地址格式
      */
     String ICON_URL_DAY = "https://mat1.gtimg.com/pingjs/ext2020/weather/pc/icon/weather/day/%s.png";

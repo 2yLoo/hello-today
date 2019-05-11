@@ -15,10 +15,13 @@ public interface WeatherService {
     /**
      * 保存天气信息
      *
+     * @param province 省份
+     * @param city     城市
+     * @param county   县
      * @return 天气信息
      * @throws IOException IO异常
      */
-    Weather saveWeather() throws IOException;
+    Weather saveWeather(String province, String city, String county) throws IOException;
 
 
 }

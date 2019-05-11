@@ -14,6 +14,7 @@ import com.yy.hellotoday.repository.WeatherRepository;
 import com.yy.hellotoday.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -35,22 +36,37 @@ public class WeatherServiceImpl implements WeatherService {
     private WeatherRepository weatherRepository;
 
     @Override
-    public Weather saveWeather() throws IOException {
+    public Weather saveWeather(String province, String city, String county) throws IOException {
         OkHttpClient client = new OkHttpClient();
+        // 省份与城市不可为空
+        if (StringUtils.isEmpty(province) || StringUtils.isEmpty(city)){
+            province = WeatherConstant.DEFAULT_PROVINCE;
+            city = WeatherConstant.DEFAULT_CITY;
+            county = WeatherConstant.DEFAULT_COUNTY;
+        }
+        // 进行中文的URL编码
+        province = java.net.URLEncoder.encode(province, "UTF-8");
+        city = java.net.URLEncoder.encode(city, "UTF-8");
+        String params = String.format("&province=%s&city=%s", province, city);
+        if (!StringUtils.isEmpty(county)) {
+            county = java.net.URLEncoder.encode(county, "UTF-8");
+            params +="&county="+county;
+        }
 
+        String url = WeatherConstant.URL+params;
         Request request = new Request.Builder()
-                .url("https://wis.qq.com/weather/common?source=pc&weather_type=observe%7Cforecast_1h%7Cforecast_24h%7Cindex%7Calarm%7Climit%7Ctips%7Crise&province=%E6%B9%96%E5%8D%97&city=%E9%95%BF%E6%B2%99&county=%E5%A4%A9%E5%BF%83&callback=jQuery111304357260138644963_1557555577200&_=1557555577206")
+                .url(url)
                 .build();
-
         Response response = client.newCall(request).execute();
         if (!response.isSuccessful()) {
             throw new IOException("服务器端错误: " + response);
         }
-
         String result = response.body().string();
-        String data = result.substring(result.indexOf("{"), result.lastIndexOf(")"));
-        System.out.println(data);
-        JSONObject dataJson = JSONObject.parseObject(data).getJSONObject("data");
+        if (result.contains("jQuery")){
+            result = result.substring(result.indexOf("{"), result.lastIndexOf(")"));
+        }
+        System.out.println(result);
+        JSONObject dataJson = JSONObject.parseObject(result).getJSONObject("data");
         Weather7Day weather7Day = JSONObject.toJavaObject(dataJson, Weather7Day.class);
         Weather weather = convertWeather(weather7Day);
         return weatherRepository.save(weather);
