@@ -12,16 +12,15 @@ import com.yy.hellotoday.model.weather.ForecastPerHour;
 import com.yy.hellotoday.model.weather.WeatherRise;
 import com.yy.hellotoday.repository.WeatherRepository;
 import com.yy.hellotoday.service.WeatherService;
+import com.yy.hellotoday.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -129,19 +128,13 @@ public class WeatherServiceImpl implements WeatherService {
         String icon = genIcon(day, weather7Day.getObserve().getWeatherCode());
         weather7Day.getObserve().setIcon(icon);
 
-        weather.setId(getDate());
+        weather.setId(DateUtil.genDate());
         weather.setForecast1h(forecastPerHours);
         weather.setForecast24h(forecastPerDays);
         weather.setWeatherRise(rises);
         weather.setObserve(weather7Day.getObserve());
         weather.setIndex(weather7Day.getIndex());
         return weather;
-    }
-
-    private String getDate() {
-        Date dt = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(dt);
     }
 
     private String genIcon(boolean day, String code) {

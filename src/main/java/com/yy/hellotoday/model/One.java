@@ -28,7 +28,8 @@ public class One implements Serializable {
     public One() {
     }
 
-    public One(String image, String content) {
+    public One(String id, String image, String content) {
+        this.id = id;
         this.image = image;
         this.content = content;
     }
