@@ -19,13 +19,13 @@ public class Weather implements Serializable {
     @Id
     private String id;
 
-    private List<ForecastPerHour> forecast1h;
+    private List<WeatherPerHour> forecast1h;
 
-    private List<ForecastPerDay> forecast24h;
+    private List<WeatherPerDay> forecast24h;
 
     private WeatherIndex index;
 
-    private ForecastObserve observe;
+    private WeatherObserve observe;
 
     private List<WeatherRise> weatherRise;
 
@@ -37,19 +37,19 @@ public class Weather implements Serializable {
         this.id = id;
     }
 
-    public List<ForecastPerHour> getForecast1h() {
+    public List<WeatherPerHour> getForecast1h() {
         return forecast1h;
     }
 
-    public void setForecast1h(List<ForecastPerHour> forecast1h) {
+    public void setForecast1h(List<WeatherPerHour> forecast1h) {
         this.forecast1h = forecast1h;
     }
 
-    public List<ForecastPerDay> getForecast24h() {
+    public List<WeatherPerDay> getForecast24h() {
         return forecast24h;
     }
 
-    public void setForecast24h(List<ForecastPerDay> forecast24h) {
+    public void setForecast24h(List<WeatherPerDay> forecast24h) {
         this.forecast24h = forecast24h;
     }
 
@@ -61,11 +61,11 @@ public class Weather implements Serializable {
         this.index = index;
     }
 
-    public ForecastObserve getObserve() {
+    public WeatherObserve getObserve() {
         return observe;
     }
 
-    public void setObserve(ForecastObserve observe) {
+    public void setObserve(WeatherObserve observe) {
         this.observe = observe;
     }
 

@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author 2yLoo
  * @create 2019-05-11 12:10
  */
-public class ForecastPerHour implements Serializable {
+public class WeatherPerHour implements Serializable {
 
     /**
      * 温度
@@ -109,7 +109,7 @@ public class ForecastPerHour implements Serializable {
 
     @Override
     public String toString() {
-        return "ForecastPerHour{" +
+        return "WeatherPerHour{" +
                 "degree='" + degree + '\'' +
                 ", updateTime='" + updateTime + '\'' +
                 ", weather='" + weather + '\'' +

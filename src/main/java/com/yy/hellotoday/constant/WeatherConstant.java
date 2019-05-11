@@ -45,6 +45,14 @@ public interface WeatherConstant {
      */
     String ICON_URL_SUNSET = "https://mat1.gtimg.com/pingjs/ext2020/weather/pc/icon/weather/set.png";
     /**
+     * 日出
+     */
+    String SUNRIZE = "日出";
+    /**
+     * 日落
+     */
+    String SUNSET = "日落";
+    /**
      * 每小时天气列表元素个数
      */
     int SIZE_PER_HOUR = 48;
@@ -56,4 +64,8 @@ public interface WeatherConstant {
      * 日出日落列表元素个数
      */
     int SIZE_RISE = 15;
+    /**
+     * 天气展示列表元素个数
+     */
+    int SIZE_SHOW = 5;
 }

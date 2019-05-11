@@ -14,29 +14,29 @@ import java.util.Map;
 public class Weather7Day {
 
     @JSONField(name = "forecast_1h")
-    private Map<String, ForecastPerHour> forecast1h;
+    private Map<String, WeatherPerHour> forecast1h;
     @JSONField(name = "forecast_24h")
-    private Map<String, ForecastPerDay> forecast24h;
+    private Map<String, WeatherPerDay> forecast24h;
 
     private WeatherIndex index;
 
-    private ForecastObserve observe;
+    private WeatherObserve observe;
 
     private Map<String, WeatherRise> rise;
 
-    public Map<String, ForecastPerHour> getForecast1h() {
+    public Map<String, WeatherPerHour> getForecast1h() {
         return forecast1h;
     }
 
-    public void setForecast1h(Map<String, ForecastPerHour> forecast1h) {
+    public void setForecast1h(Map<String, WeatherPerHour> forecast1h) {
         this.forecast1h = forecast1h;
     }
 
-    public Map<String, ForecastPerDay> getForecast24h() {
+    public Map<String, WeatherPerDay> getForecast24h() {
         return forecast24h;
     }
 
-    public void setForecast24h(Map<String, ForecastPerDay> forecast24h) {
+    public void setForecast24h(Map<String, WeatherPerDay> forecast24h) {
         this.forecast24h = forecast24h;
     }
 
@@ -48,11 +48,11 @@ public class Weather7Day {
         this.index = index;
     }
 
-    public ForecastObserve getObserve() {
+    public WeatherObserve getObserve() {
         return observe;
     }
 
-    public void setObserve(ForecastObserve observe) {
+    public void setObserve(WeatherObserve observe) {
         this.observe = observe;
     }
 

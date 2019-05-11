@@ -10,4 +10,12 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @create 2019-05-11 13:45
  */
 public interface WeatherRepository extends MongoRepository<Weather, String> {
+
+    /**
+     * 根据ID获取天气信息
+     *
+     * @param id id
+     * @return 天气信息
+     */
+    Weather findWeatherByIdIs(String id);
 }

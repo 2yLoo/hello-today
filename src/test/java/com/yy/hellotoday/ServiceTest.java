@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author 2yLoo
  * @create 2019-05-11 12:01
  */
-public class ServiceTest extends HelloTodayApplicationTests {
+public class ServiceTest extends HelloTodayWeatherApplicationTests {
 
     @Autowired
     private WeatherService weatherService;

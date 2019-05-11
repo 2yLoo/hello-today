@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author 2yLoo
  * @create 2019-05-11 12:25
  */
-public class ForecastObserve implements Serializable {
+public class WeatherObserve implements Serializable {
 
     /**
      * 温度
@@ -145,7 +145,7 @@ public class ForecastObserve implements Serializable {
 
     @Override
     public String toString() {
-        return "ForecastObserve{" +
+        return "WeatherObserve{" +
                 "degree='" + degree + '\'' +
                 ", humidity='" + humidity + '\'' +
                 ", precipitation='" + precipitation + '\'' +

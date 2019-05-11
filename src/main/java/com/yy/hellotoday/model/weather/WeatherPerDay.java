@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author 2yLoo
  * @create 2019-05-11 12:13
  */
-public class ForecastPerDay implements Serializable {
+public class WeatherPerDay implements Serializable {
     /**
      * 白天天气
      */
@@ -240,7 +240,7 @@ public class ForecastPerDay implements Serializable {
 
     @Override
     public String toString() {
-        return "ForecastPerDay{" +
+        return "WeatherPerDay{" +
                 "dayWeather='" + dayWeather + '\'' +
                 ", dayWeatherCode='" + dayWeatherCode + '\'' +
                 ", dayWeatherShort='" + dayWeatherShort + '\'' +

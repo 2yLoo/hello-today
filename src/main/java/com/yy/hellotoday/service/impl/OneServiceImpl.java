@@ -38,4 +38,8 @@ public class OneServiceImpl implements OneService {
         return oneRepository.save(one);
     }
 
+    @Override
+    public One getOne(String date) {
+        return oneRepository.findOneByIdIs(date);
+    }
 }

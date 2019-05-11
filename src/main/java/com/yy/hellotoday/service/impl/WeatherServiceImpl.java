@@ -7,8 +7,8 @@ import com.squareup.okhttp.Response;
 import com.yy.hellotoday.constant.WeatherConstant;
 import com.yy.hellotoday.model.Weather;
 import com.yy.hellotoday.dto.Weather7Day;
-import com.yy.hellotoday.model.weather.ForecastPerDay;
-import com.yy.hellotoday.model.weather.ForecastPerHour;
+import com.yy.hellotoday.model.weather.WeatherPerDay;
+import com.yy.hellotoday.model.weather.WeatherPerHour;
 import com.yy.hellotoday.model.weather.WeatherRise;
 import com.yy.hellotoday.repository.WeatherRepository;
 import com.yy.hellotoday.service.WeatherService;
@@ -72,28 +72,33 @@ public class WeatherServiceImpl implements WeatherService {
         return weatherRepository.save(weather);
     }
 
+    @Override
+    public Weather getWeather(String date){
+        return weatherRepository.findWeatherByIdIs(date);
+    }
+
     private Weather convertWeather(Weather7Day weather7Day) {
         Weather weather = new Weather();
 
-        List<ForecastPerHour> forecastPerHours = new ArrayList<>();
-        List<ForecastPerDay> forecastPerDays = new ArrayList<>();
+        List<WeatherPerHour> weatherPerHours = new ArrayList<>();
+        List<WeatherPerDay> weatherPerDays = new ArrayList<>();
         List<WeatherRise> rises = new ArrayList<>();
 
         for (int i = 0; i < WeatherConstant.SIZE_PER_HOUR; i++) {
             String index = String.valueOf(i);
-            forecastPerHours.add(weather7Day.getForecast1h().get(index));
+            weatherPerHours.add(weather7Day.getForecast1h().get(index));
 
             if (i < WeatherConstant.SIZE_RISE) {
                 rises.add(weather7Day.getRise().get(index));
                 if (i < WeatherConstant.SIZE_PER_DAY) {
-                    forecastPerDays.add(weather7Day.getForecast24h().get(index));
+                    weatherPerDays.add(weather7Day.getForecast24h().get(index));
                 }
             }
         }
 
-        forecastPerHours.sort(new Comparator<ForecastPerHour>() {
+        weatherPerHours.sort(new Comparator<WeatherPerHour>() {
             @Override
-            public int compare(ForecastPerHour o1, ForecastPerHour o2) {
+            public int compare(WeatherPerHour o1, WeatherPerHour o2) {
                 return o1.getUpdateTime().compareTo(o2.getUpdateTime());
             }
         });
@@ -106,19 +111,19 @@ public class WeatherServiceImpl implements WeatherService {
         int node4 = Integer.valueOf(tomorrowWeatherRise.getSunset().replace(":", ""));
 
         boolean day = false;
-        for (ForecastPerHour forecastPerHour : forecastPerHours) {
-            int time = Integer.valueOf(forecastPerHour.getUpdateTime().substring(8, 12));
+        for (WeatherPerHour weatherPerHour : weatherPerHours) {
+            int time = Integer.valueOf(weatherPerHour.getUpdateTime().substring(8, 12));
             if ((node1 < time && time < node2) || (node3 < time && time < node4)) {
                 day = true;
             }
-            String icon = genIcon(day, forecastPerHour.getWeatherCode());
-            forecastPerHour.setIcon(icon);
+            String icon = genIcon(day, weatherPerHour.getWeatherCode());
+            weatherPerHour.setIcon(icon);
         }
-        for (ForecastPerDay forecastPerDay : forecastPerDays) {
-            String dayIcon = genIcon(true, forecastPerDay.getDayWeatherCode());
-            String nightIcon = genIcon(false, forecastPerDay.getNightWeatherCode());
-            forecastPerDay.setDayIcon(dayIcon);
-            forecastPerDay.setNightIcon(nightIcon);
+        for (WeatherPerDay weatherPerDay : weatherPerDays) {
+            String dayIcon = genIcon(true, weatherPerDay.getDayWeatherCode());
+            String nightIcon = genIcon(false, weatherPerDay.getNightWeatherCode());
+            weatherPerDay.setDayIcon(dayIcon);
+            weatherPerDay.setNightIcon(nightIcon);
         }
         int time = Integer.valueOf(weather7Day.getObserve().getUpdateTime().substring(8));
         day = false;
@@ -129,8 +134,8 @@ public class WeatherServiceImpl implements WeatherService {
         weather7Day.getObserve().setIcon(icon);
 
         weather.setId(DateUtil.genDate());
-        weather.setForecast1h(forecastPerHours);
-        weather.setForecast24h(forecastPerDays);
+        weather.setForecast1h(weatherPerHours);
+        weather.setForecast24h(weatherPerDays);
         weather.setWeatherRise(rises);
         weather.setObserve(weather7Day.getObserve());
         weather.setIndex(weather7Day.getIndex());
