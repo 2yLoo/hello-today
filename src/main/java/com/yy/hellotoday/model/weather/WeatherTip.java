@@ -1,12 +1,14 @@
 package com.yy.hellotoday.model.weather;
 
+import java.io.Serializable;
+
 /**
  * 描述: 天气提示
  *
  * @author 2yLoo
  * @create 2019-05-11 12:23
  */
-public class WeatherTip {
+public class WeatherTip implements Serializable {
 
     private String detail;
 
@@ -36,5 +38,14 @@ public class WeatherTip {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "WeatherTip{" +
+                "detail='" + detail + '\'' +
+                ", info='" + info + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

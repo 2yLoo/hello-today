@@ -1,49 +1,89 @@
 package com.yy.hellotoday.model.weather;
 
+import java.io.Serializable;
+
 /**
  * 描述: 每日天气
  *
  * @author 2yLoo
  * @create 2019-05-11 12:13
  */
-public class ForecastPerDay {
-
+public class ForecastPerDay implements Serializable {
+    /**
+     * 白天天气
+     */
     private String dayWeather;
-
+    /**
+     * 白天天气码
+     */
     private String dayWeatherCode;
-
+    /**
+     * 白天天气简称
+     */
     private String dayWeatherShort;
-
+    /**
+     * 白天风向
+     */
     private String dayWindDirection;
-
+    /**
+     * 白天风向码
+     */
     private String dayWindDirectionCode;
-
+    /**
+     * 白天风力
+     */
     private String dayWindPower;
-
+    /**
+     * 白天风力码
+     */
     private String dayWindPowerCode;
-
+    /**
+     * 最高温度
+     */
     private String maxDegree;
-
+    /**
+     * 最低温度
+     */
     private String minDegree;
-
+    /**
+     * 晚上天气
+     */
     private String nightWeather;
-
+    /**
+     * 晚上天气码
+     */
     private String nightWeatherCode;
-
+    /**
+     * 晚上天气简称
+     */
     private String nightWeatherShort;
-
+    /**
+     * 晚上风向
+     */
     private String nightWindDirection;
-
+    /**
+     * 晚上风向码
+     */
     private String nightWindDirectionCode;
-
+    /**
+     * 晚上风力
+     */
     private String nightWindPower;
-
+    /**
+     * 晚上风力码
+     */
     private String nightWindPowerCode;
-
+    /**
+     * 时间
+     */
     private String time;
-
+    /**
+     * 白天天气图标
+     */
     private String dayIcon;
-
+    /**
+     * 晚上天气图标
+     */
     private String nightIcon;
 
     public String getDayWeather() {
@@ -196,5 +236,30 @@ public class ForecastPerDay {
 
     public void setNightIcon(String nightIcon) {
         this.nightIcon = nightIcon;
+    }
+
+    @Override
+    public String toString() {
+        return "ForecastPerDay{" +
+                "dayWeather='" + dayWeather + '\'' +
+                ", dayWeatherCode='" + dayWeatherCode + '\'' +
+                ", dayWeatherShort='" + dayWeatherShort + '\'' +
+                ", dayWindDirection='" + dayWindDirection + '\'' +
+                ", dayWindDirectionCode='" + dayWindDirectionCode + '\'' +
+                ", dayWindPower='" + dayWindPower + '\'' +
+                ", dayWindPowerCode='" + dayWindPowerCode + '\'' +
+                ", maxDegree='" + maxDegree + '\'' +
+                ", minDegree='" + minDegree + '\'' +
+                ", nightWeather='" + nightWeather + '\'' +
+                ", nightWeatherCode='" + nightWeatherCode + '\'' +
+                ", nightWeatherShort='" + nightWeatherShort + '\'' +
+                ", nightWindDirection='" + nightWindDirection + '\'' +
+                ", nightWindDirectionCode='" + nightWindDirectionCode + '\'' +
+                ", nightWindPower='" + nightWindPower + '\'' +
+                ", nightWindPowerCode='" + nightWindPowerCode + '\'' +
+                ", time='" + time + '\'' +
+                ", dayIcon='" + dayIcon + '\'' +
+                ", nightIcon='" + nightIcon + '\'' +
+                '}';
     }
 }

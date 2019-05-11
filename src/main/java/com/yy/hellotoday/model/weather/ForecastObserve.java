@@ -1,33 +1,58 @@
 package com.yy.hellotoday.model.weather;
 
+import java.io.Serializable;
+
 /**
- * 描述:
+ * 描述: 天气总览
  *
  * @author 2yLoo
  * @create 2019-05-11 12:25
  */
-public class ForecastObserve {
+public class ForecastObserve implements Serializable {
 
+    /**
+     * 温度
+     */
     private String degree;
-
+    /**
+     * 湿度
+     */
     private String humidity;
-
+    /**
+     * 降雨量
+     */
     private String precipitation;
-
+    /**
+     * 大气压强
+     */
     private String pressure;
-
+    /**
+     * 时间
+     */
     private String updateTime;
-
+    /**
+     * 天气
+     */
     private String weather;
-
+    /**
+     * 天气码
+     */
     private String weatherCode;
-
+    /**
+     * 天气简称
+     */
     private String weatherShort;
-
+    /**
+     * 风向
+     */
     private String windDirection;
-
+    /**
+     * 风力
+     */
     private String windPower;
-
+    /**
+     * 天气图标
+     */
     private String icon;
 
     public String getDegree() {
@@ -116,5 +141,22 @@ public class ForecastObserve {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    @Override
+    public String toString() {
+        return "ForecastObserve{" +
+                "degree='" + degree + '\'' +
+                ", humidity='" + humidity + '\'' +
+                ", precipitation='" + precipitation + '\'' +
+                ", pressure='" + pressure + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                ", weather='" + weather + '\'' +
+                ", weatherCode='" + weatherCode + '\'' +
+                ", weatherShort='" + weatherShort + '\'' +
+                ", windDirection='" + windDirection + '\'' +
+                ", windPower='" + windPower + '\'' +
+                ", icon='" + icon + '\'' +
+                '}';
     }
 }

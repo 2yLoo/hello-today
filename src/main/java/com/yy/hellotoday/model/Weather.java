@@ -4,16 +4,17 @@ import com.yy.hellotoday.model.weather.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * 描述:
+ * 描述: 天气实体类
  *
  * @author 2yLoo
  * @create 2019-05-11 12:28
  */
 @Document
-public class Weather {
+public class Weather implements Serializable {
 
     @Id
     private String id;
@@ -74,5 +75,17 @@ public class Weather {
 
     public void setWeatherRise(List<WeatherRise> weatherRise) {
         this.weatherRise = weatherRise;
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "id='" + id + '\'' +
+                ", forecast1h=" + forecast1h +
+                ", forecast24h=" + forecast24h +
+                ", index=" + index +
+                ", observe=" + observe +
+                ", weatherRise=" + weatherRise +
+                '}';
     }
 }

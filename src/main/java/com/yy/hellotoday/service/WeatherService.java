@@ -14,6 +14,7 @@ public interface WeatherService {
 
     /**
      * 保存天气信息
+     *
      * @return 天气信息
      * @throws IOException IO异常
      */

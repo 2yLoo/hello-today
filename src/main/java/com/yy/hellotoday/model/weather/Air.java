@@ -2,13 +2,15 @@ package com.yy.hellotoday.model.weather;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.io.Serializable;
+
 /**
  * 描述: 空气信息
  *
  * @author 2yLoo
  * @create 2019-05-11 10:42
  */
-public class Air {
+public class Air implements Serializable {
 
     /**
      * 空气湿度
@@ -132,4 +134,19 @@ public class Air {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "Air{" +
+                "aqi='" + aqi + '\'' +
+                ", aqiLevel=" + aqiLevel +
+                ", aqiName='" + aqiName + '\'' +
+                ", co='" + co + '\'' +
+                ", no2='" + no2 + '\'' +
+                ", o3='" + o3 + '\'' +
+                ", pm10='" + pm10 + '\'' +
+                ", pm25='" + pm25 + '\'' +
+                ", so2='" + so2 + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                '}';
+    }
 }

@@ -1,57 +1,106 @@
 package com.yy.hellotoday.model.weather;
 
+import java.io.Serializable;
+
 /**
- * 描述:
+ * 描述: 天气提醒
  *
  * @author 2yLoo
  * @create 2019-05-11 13:19
  */
-public class WeatherIndex {
+public class WeatherIndex implements Serializable {
 
+    /**
+     * 时间
+     */
     private String time;
-
+    /**
+     * 化妆提醒
+     */
     private WeatherTip makeup;
-
+    /**
+     * 太阳镜提醒
+     */
     private WeatherTip sunglasses;
-
+    /**
+     * 天气扩散提醒
+     */
     private WeatherTip diffusion;
-
+    /**
+     * 日光提醒
+     */
     private WeatherTip sunscreen;
-
+    /**
+     * 心情提醒
+     */
     private WeatherTip mood;
-
+    /**
+     * 运动提醒
+     */
     private WeatherTip sports;
-
+    /**
+     * 雨伞提醒
+     */
     private WeatherTip umbrella;
-
+    /**
+     * 风寒提醒
+     */
     private WeatherTip chill;
-
+    /**
+     * 过敏提醒
+     */
     private WeatherTip allergy;
-
+    /**
+     * 旅游提醒
+     */
     private WeatherTip tourism;
-
+    /**
+     * 冷天提醒
+     */
     private WeatherTip cold;
-
+    /**
+     * 干燥提醒
+     */
     private WeatherTip dry;
-
+    /**
+     * 穿衣提醒
+     */
     private WeatherTip clothes;
-
+    /**
+     * 适宜度提醒
+     */
     private WeatherTip comfort;
-
+    /**
+     * 早晨提醒
+     */
     private WeatherTip morning;
-
+    /**
+     * 晾晒提醒
+     */
     private WeatherTip drying;
-
+    /**
+     * 紫外线提醒
+     */
     private WeatherTip ultraviolet;
-
+    /**
+     * 垂钓提醒
+     */
     private WeatherTip fish;
-
+    /**
+     * 中暑提醒
+     */
     private WeatherTip heatstroke;
-
+    /**
+     * 空调提醒
+     */
     private WeatherTip airconditioner;
-
+    /**
+     * 洗车提醒
+     */
     private WeatherTip carwash;
-
+    /**
+     * 交通提醒
+     */
     private WeatherTip traffic;
 
     public String getTime() {
@@ -236,5 +285,34 @@ public class WeatherIndex {
 
     public void setTraffic(WeatherTip traffic) {
         this.traffic = traffic;
+    }
+
+    @Override
+    public String toString() {
+        return "WeatherIndex{" +
+                "time='" + time + '\'' +
+                ", makeup=" + makeup +
+                ", sunglasses=" + sunglasses +
+                ", diffusion=" + diffusion +
+                ", sunscreen=" + sunscreen +
+                ", mood=" + mood +
+                ", sports=" + sports +
+                ", umbrella=" + umbrella +
+                ", chill=" + chill +
+                ", allergy=" + allergy +
+                ", tourism=" + tourism +
+                ", cold=" + cold +
+                ", dry=" + dry +
+                ", clothes=" + clothes +
+                ", comfort=" + comfort +
+                ", morning=" + morning +
+                ", drying=" + drying +
+                ", ultraviolet=" + ultraviolet +
+                ", fish=" + fish +
+                ", heatstroke=" + heatstroke +
+                ", airconditioner=" + airconditioner +
+                ", carwash=" + carwash +
+                ", traffic=" + traffic +
+                '}';
     }
 }

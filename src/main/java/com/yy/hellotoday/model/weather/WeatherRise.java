@@ -1,12 +1,14 @@
 package com.yy.hellotoday.model.weather;
 
+import java.io.Serializable;
+
 /**
  * 描述: 日出日落
  *
  * @author 2yLoo
  * @create 2019-05-11 10:48
  */
-public class WeatherRise {
+public class WeatherRise implements Serializable {
 
     /**
      * 日出
