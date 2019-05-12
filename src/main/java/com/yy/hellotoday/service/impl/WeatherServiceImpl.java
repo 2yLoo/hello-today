@@ -135,7 +135,7 @@ public class WeatherServiceImpl implements WeatherService {
 
         weather.setId(DateUtil.genDate());
         weather.setForecast1h(weatherPerHours);
-        weather.setForecast24h(weatherPerDays);
+        weather.setForecast1d(weatherPerDays);
         weather.setWeatherRise(rises);
         weather.setObserve(weather7Day.getObserve());
         weather.setIndex(weather7Day.getIndex());
