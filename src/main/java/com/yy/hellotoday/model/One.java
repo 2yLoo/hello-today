@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 描述: 《一个》实体类
  *
- * @author yangyang.luo
+ * @author 2yLoo
  * @create 2019-05-11 18:23
  */
 @Document

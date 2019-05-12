@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * 描述: 《一个》服务类接口
  *
- * @author yangyang.luo
+ * @author 2yLoo
  * @create 2019-05-11 18:23
  */
 public interface OneService {

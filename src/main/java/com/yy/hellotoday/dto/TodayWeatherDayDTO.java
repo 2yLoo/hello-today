@@ -1,12 +1,14 @@
 package com.yy.hellotoday.dto;
 
+import java.io.Serializable;
+
 /**
  * 描述: 今日天气每日DTO
  *
- * @author yangyang.luo
+ * @author 2yLoo
  * @create 2019-05-11 22:42
  */
-public class TodayWeatherPerDayDTO {
+public class TodayWeatherDayDTO implements Serializable {
     /**
      * 白天天气简称
      */
@@ -32,10 +34,10 @@ public class TodayWeatherPerDayDTO {
      */
     private String nightWeatherShort;
 
-    public TodayWeatherPerDayDTO() {
+    public TodayWeatherDayDTO() {
     }
 
-    public TodayWeatherPerDayDTO(String dayWeatherShort, String dayIcon, String maxDegree, String minDegree, String nightIcon, String nightWeatherShort) {
+    public TodayWeatherDayDTO(String dayWeatherShort, String dayIcon, String maxDegree, String minDegree, String nightIcon, String nightWeatherShort) {
         this.dayWeatherShort = dayWeatherShort;
         this.dayIcon = dayIcon;
         this.maxDegree = maxDegree;

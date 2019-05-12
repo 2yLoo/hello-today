@@ -1,5 +1,6 @@
 package com.yy.hellotoday.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.yy.hellotoday.model.weather.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,7 +22,9 @@ public class Weather implements Serializable {
 
     private List<WeatherPerHour> forecast1h;
 
-    private List<WeatherPerDay> forecast24h;
+    // TODO: 2019-05-12 校验JSON转换
+    // @JSONField(name = "forecast24h")
+    private List<WeatherPerDay> forecast1d;
 
     private WeatherIndex index;
 
@@ -45,12 +48,12 @@ public class Weather implements Serializable {
         this.forecast1h = forecast1h;
     }
 
-    public List<WeatherPerDay> getForecast24h() {
-        return forecast24h;
+    public List<WeatherPerDay> getForecast1d() {
+        return forecast1d;
     }
 
-    public void setForecast24h(List<WeatherPerDay> forecast24h) {
-        this.forecast24h = forecast24h;
+    public void setForecast1d(List<WeatherPerDay> forecast1d) {
+        this.forecast1d = forecast1d;
     }
 
     public WeatherIndex getIndex() {
@@ -82,7 +85,7 @@ public class Weather implements Serializable {
         return "Weather{" +
                 "id='" + id + '\'' +
                 ", forecast1h=" + forecast1h +
-                ", forecast24h=" + forecast24h +
+                ", forecast1d=" + forecast1d +
                 ", index=" + index +
                 ", observe=" + observe +
                 ", weatherRise=" + weatherRise +

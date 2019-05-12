@@ -1,8 +1,8 @@
 package com.yy.hellotoday;
 
-import com.yy.hellotoday.model.OneDay;
+import com.yy.hellotoday.model.Couple;
 import com.yy.hellotoday.model.Weather;
-import com.yy.hellotoday.repository.OneDayRepository;
+import com.yy.hellotoday.repository.CoupleRepository;
 import com.yy.hellotoday.repository.WeatherRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +18,19 @@ import java.util.Date;
 public class MongoRepositoryTest extends HelloTodayWeatherApplicationTests {
 
     @Autowired
-    OneDayRepository oneDayRepository;
+    CoupleRepository coupleRepository;
 
     @Autowired
     WeatherRepository weatherRepository;
 
     @Test
     public void testSaveOneDay(){
-        OneDay oneDay = new OneDay();
-        oneDay.setUs("test");
-        oneDay.setMyBirthday(new Date());
-        oneDay.setYourBirthday(new Date());
-        oneDay.setWedding(new Date());
-        oneDayRepository.save(oneDay);
+        Couple couple = new Couple();
+        couple.setUs("test");
+        couple.setMyBirthday(new Date());
+        couple.setYourBirthday(new Date());
+        couple.setWedding(new Date());
+        coupleRepository.save(couple);
     }
 
     @Test

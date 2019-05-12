@@ -1,26 +1,37 @@
 package com.yy.hellotoday.model;
 
-import com.yy.hellotoday.dto.TodayWeatherPerDayDTO;
-import com.yy.hellotoday.dto.TodayWeatherPerHourDTO;
-import com.yy.hellotoday.model.weather.WeatherPerDay;
-import com.yy.hellotoday.model.weather.WeatherPerHour;
-import com.yy.hellotoday.model.weather.WeatherRise;
+import com.yy.hellotoday.dto.TodayWeatherDayDTO;
+import com.yy.hellotoday.dto.TodayWeatherHourDTO;
+import com.yy.hellotoday.dto.TodayWeatherTipsDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 描述: 今日实体类
  *
- * @author yangyang.luo
+ * @author 2yLoo
  * @create 2019-05-11 21:37
  */
 @Document
-public class TodayWeather {
+public class TodayWeather implements Serializable {
 
     @Id
     private String id;
+    /**
+     * 发件人
+     */
+    private String sendFrom;
+    /**
+     * 收件人
+     */
+    private String sendTo;
+    /**
+     * 标题
+     */
+    private String title;
     /**
      * 温度
      */
@@ -46,21 +57,17 @@ public class TodayWeather {
      */
     private String windPower;
     /**
-     * 首要提示
+     * 提示
      */
-    private String primaryTip;
-    /**
-     * 次要提示
-     */
-    private String secondaryTip;
+    private List<TodayWeatherTipsDTO> tips;
     /**
      * 每小时天气
      */
-    private List<TodayWeatherPerHourDTO> forecast1h;
+    private List<TodayWeatherHourDTO> forecast1h;
     /**
      * 每天天气
      */
-    private List<TodayWeatherPerDayDTO> forecast24h;
+    private List<TodayWeatherDayDTO> forecast1d;
     /**
      * 每日图片
      */
@@ -76,6 +83,30 @@ public class TodayWeather {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getSendFrom() {
+        return sendFrom;
+    }
+
+    public void setSendFrom(String sendFrom) {
+        this.sendFrom = sendFrom;
+    }
+
+    public String getSendTo() {
+        return sendTo;
+    }
+
+    public void setSendTo(String sendTo) {
+        this.sendTo = sendTo;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDegree() {
@@ -126,36 +157,28 @@ public class TodayWeather {
         this.windPower = windPower;
     }
 
-    public String getPrimaryTip() {
-        return primaryTip;
+    public List<TodayWeatherTipsDTO> getTips() {
+        return tips;
     }
 
-    public void setPrimaryTip(String primaryTip) {
-        this.primaryTip = primaryTip;
+    public void setTips(List<TodayWeatherTipsDTO> tips) {
+        this.tips = tips;
     }
 
-    public String getSecondaryTip() {
-        return secondaryTip;
-    }
-
-    public void setSecondaryTip(String secondaryTip) {
-        this.secondaryTip = secondaryTip;
-    }
-
-    public List<TodayWeatherPerHourDTO> getForecast1h() {
+    public List<TodayWeatherHourDTO> getForecast1h() {
         return forecast1h;
     }
 
-    public void setForecast1h(List<TodayWeatherPerHourDTO> forecast1h) {
+    public void setForecast1h(List<TodayWeatherHourDTO> forecast1h) {
         this.forecast1h = forecast1h;
     }
 
-    public List<TodayWeatherPerDayDTO> getForecast24h() {
-        return forecast24h;
+    public List<TodayWeatherDayDTO> getForecast1d() {
+        return forecast1d;
     }
 
-    public void setForecast24h(List<TodayWeatherPerDayDTO> forecast24h) {
-        this.forecast24h = forecast24h;
+    public void setForecast1d(List<TodayWeatherDayDTO> forecast1d) {
+        this.forecast1d = forecast1d;
     }
 
     public String getImage() {
@@ -172,5 +195,26 @@ public class TodayWeather {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "TodayWeather{" +
+                "id='" + id + '\'' +
+                ", sendFrom='" + sendFrom + '\'' +
+                ", sendTo='" + sendTo + '\'' +
+                ", title='" + title + '\'' +
+                ", degree='" + degree + '\'' +
+                ", humidity='" + humidity + '\'' +
+                ", weather='" + weather + '\'' +
+                ", icon='" + icon + '\'' +
+                ", windDirection='" + windDirection + '\'' +
+                ", windPower='" + windPower + '\'' +
+                ", tips=" + tips +
+                ", forecast1h=" + forecast1h +
+                ", forecast1d=" + forecast1d +
+                ", image='" + image + '\'' +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

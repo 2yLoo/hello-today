@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * 描述: 《一个》Repository接口
  *
- * @author yangyang.luo
+ * @author 2yLoo
  * @create 2019-05-11 18:26
  */
 public interface OneRepository extends MongoRepository<One, String> {

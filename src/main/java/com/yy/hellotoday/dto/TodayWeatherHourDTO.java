@@ -3,10 +3,10 @@ package com.yy.hellotoday.dto;
 /**
  * 描述: 今日天气每小时DTO
  *
- * @author yangyang.luo
+ * @author 2yLoo
  * @create 2019-05-11 22:15
  */
-public class TodayWeatherPerHourDTO {
+public class TodayWeatherHourDTO {
 
     /**
      * 时间
@@ -21,10 +21,10 @@ public class TodayWeatherPerHourDTO {
      */
     private String degree;
 
-    public TodayWeatherPerHourDTO() {
+    public TodayWeatherHourDTO() {
     }
 
-    public TodayWeatherPerHourDTO(String time, String icon, String degree) {
+    public TodayWeatherHourDTO(String time, String icon, String degree) {
         this.time = time;
         this.icon = icon;
         this.degree = degree;

@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * 描述: 今日Repository接口
  *
- * @author yangyang.luo
+ * @author 2yLoo
  * @create 2019-05-11 21:49
  */
 public interface TodayWeatherRepository extends MongoRepository<TodayWeather, String> {

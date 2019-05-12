@@ -2,12 +2,13 @@ package com.yy.hellotoday.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  * 描述: 日期工具类
  *
- * @author yangyang.luo
+ * @author 2yLoo
  * @create 2019-05-11 18:31
  */
 public class DateUtil {
@@ -29,4 +30,46 @@ public class DateUtil {
         }
         return dateFormatForDay.get().format(new Date());
     }
+
+    public static int daysBetween(Date early, Date late) {
+        Calendar calst = Calendar.getInstance();
+        Calendar caled = Calendar.getInstance();
+        calst.setTime(early);
+        caled.setTime(late);
+        //设置时间为0时
+        calst.set(Calendar.HOUR_OF_DAY, 0);
+        calst.set(Calendar.MINUTE, 0);
+        calst.set(Calendar.SECOND, 0);
+        caled.set(Calendar.HOUR_OF_DAY, 0);
+        caled.set(Calendar.MINUTE, 0);
+        caled.set(Calendar.SECOND, 0);
+        //得到两个日期相差的天数
+        int days = ((int) (caled.getTime().getTime() / 1000) - (int) (calst
+                .getTime().getTime() / 1000)) / 3600 / 24;
+
+        return days;
+    }
+
+    public static int daysPerYearBetween(Date early, Date late) {
+        Calendar calst = Calendar.getInstance();
+        Calendar caled = Calendar.getInstance();
+        calst.setTime(early);
+        caled.setTime(late);
+        //设置时间为0时
+        calst.set(Calendar.YEAR, 0);
+        calst.set(Calendar.HOUR_OF_DAY, 0);
+        calst.set(Calendar.MINUTE, 0);
+        calst.set(Calendar.SECOND, 0);
+        caled.set(Calendar.YEAR, 0);
+
+        caled.set(Calendar.HOUR_OF_DAY, 0);
+        caled.set(Calendar.MINUTE, 0);
+        caled.set(Calendar.SECOND, 0);
+        //得到两个日期相差的天数
+        int days = ((int) (caled.getTime().getTime() / 1000) - (int) (calst
+                .getTime().getTime() / 1000)) / 3600 / 24;
+
+        return days;
+    }
+
 }

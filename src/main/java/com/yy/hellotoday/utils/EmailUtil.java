@@ -1,6 +1,8 @@
 package com.yy.hellotoday.utils;
 
+import com.yy.hellotoday.model.Couple;
 import com.yy.hellotoday.model.TodayWeather;
+import com.yy.hellotoday.service.CoupleService;
 import com.yy.hellotoday.service.TodayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,23 +33,31 @@ public class EmailUtil {
 
     private TodayService todayService;
 
-    private JavaMailSender javaMailSender;
+    // TODO: 2019-05-12 将天气对象组合好后再进行循环的邮件发送
+    private CoupleService coupleService;
 
+    private JavaMailSender javaMailSender;
+    
     @Autowired
-    public EmailUtil(TodayService todayService, JavaMailSender javaMailSender) {
+    public EmailUtil(TodayService todayService, CoupleService coupleService, JavaMailSender javaMailSender) {
         this.todayService = todayService;
+        this.coupleService = coupleService;
         this.javaMailSender = javaMailSender;
     }
 
     public void sendTodayMail(){
         MimeMessage message = null;
+        TodayWeather todayWeather = todayService.getTodayWeather(DateUtil.genDate());
+        Couple couple = coupleService.findByMyEmail(from);
+
         try {
             message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom(from);
-            helper.setTo(to);
-            helper.setSubject(title);
-            String text = genText(todayService.getTodayWeather(DateUtil.genDate()));
+            helper.setFrom(todayWeather.getSendFrom());
+            helper.setTo(todayWeather.getSendTo());
+            helper.setSubject(todayWeather.getTitle());
+            // 获取text后再循环生成tips
+            String text = genText(todayWeather);
             helper.setText(text, true);
             javaMailSender.send(message);
         } catch (MessagingException e) {
@@ -58,8 +68,8 @@ public class EmailUtil {
     private String genText(TodayWeather todayWeather) {
         String degree = todayWeather.getDegree();
         String icon = todayWeather.getIcon();
-        String tip1 = todayWeather.getPrimaryTip();
-        String tip2 = todayWeather.getSecondaryTip();
+        String tip1 = todayWeather.getTips().get(0).getTip();
+        String tip2 = todayWeather.getTips().get(1).getTip();
         String humidity = todayWeather.getHumidity();
         String weather = todayWeather.getWeather();
 
@@ -95,36 +105,36 @@ public class EmailUtil {
                 .replace("{hd5}", todayWeather.getForecast1h().get(4).getDegree())
                 .replace("{hd6}", todayWeather.getForecast1h().get(5).getDegree())
                 .replace("{hd7}", todayWeather.getForecast1h().get(6).getDegree())
-                .replace("{dw1}", todayWeather.getForecast24h().get(0).getDayWeatherShort())
-                .replace("{dw2}", todayWeather.getForecast24h().get(1).getDayWeatherShort())
-                .replace("{dw3}", todayWeather.getForecast24h().get(2).getDayWeatherShort())
-                .replace("{dw4}", todayWeather.getForecast24h().get(3).getDayWeatherShort())
-                .replace("{dw5}", todayWeather.getForecast24h().get(4).getDayWeatherShort())
-                .replace("{dc1}", todayWeather.getForecast24h().get(0).getDayIcon())
-                .replace("{dc2}", todayWeather.getForecast24h().get(1).getDayIcon())
-                .replace("{dc3}", todayWeather.getForecast24h().get(2).getDayIcon())
-                .replace("{dc4}", todayWeather.getForecast24h().get(3).getDayIcon())
-                .replace("{dc5}", todayWeather.getForecast24h().get(4).getDayIcon())
-                .replace("{dd1}", todayWeather.getForecast24h().get(0).getMaxDegree())
-                .replace("{dd2}", todayWeather.getForecast24h().get(1).getMaxDegree())
-                .replace("{dd3}", todayWeather.getForecast24h().get(2).getMaxDegree())
-                .replace("{dd4}", todayWeather.getForecast24h().get(3).getMaxDegree())
-                .replace("{dd5}", todayWeather.getForecast24h().get(4).getMaxDegree())
-                .replace("{nd1}", todayWeather.getForecast24h().get(0).getMinDegree())
-                .replace("{nd2}", todayWeather.getForecast24h().get(1).getMinDegree())
-                .replace("{nd3}", todayWeather.getForecast24h().get(2).getMinDegree())
-                .replace("{nd4}", todayWeather.getForecast24h().get(3).getMinDegree())
-                .replace("{nd5}", todayWeather.getForecast24h().get(4).getMinDegree())
-                .replace("{nc1}", todayWeather.getForecast24h().get(0).getNightIcon())
-                .replace("{nc2}", todayWeather.getForecast24h().get(1).getNightIcon())
-                .replace("{nc3}", todayWeather.getForecast24h().get(2).getNightIcon())
-                .replace("{nc4}", todayWeather.getForecast24h().get(3).getNightIcon())
-                .replace("{nc5}", todayWeather.getForecast24h().get(4).getNightIcon())
-                .replace("{nw1}", todayWeather.getForecast24h().get(0).getNightWeatherShort())
-                .replace("{nw2}", todayWeather.getForecast24h().get(1).getNightWeatherShort())
-                .replace("{nw3}", todayWeather.getForecast24h().get(2).getNightWeatherShort())
-                .replace("{nw4}", todayWeather.getForecast24h().get(3).getNightWeatherShort())
-                .replace("{nw5}", todayWeather.getForecast24h().get(4).getNightWeatherShort());
+                .replace("{dw1}", todayWeather.getForecast1d().get(0).getDayWeatherShort())
+                .replace("{dw2}", todayWeather.getForecast1d().get(1).getDayWeatherShort())
+                .replace("{dw3}", todayWeather.getForecast1d().get(2).getDayWeatherShort())
+                .replace("{dw4}", todayWeather.getForecast1d().get(3).getDayWeatherShort())
+                .replace("{dw5}", todayWeather.getForecast1d().get(4).getDayWeatherShort())
+                .replace("{dc1}", todayWeather.getForecast1d().get(0).getDayIcon())
+                .replace("{dc2}", todayWeather.getForecast1d().get(1).getDayIcon())
+                .replace("{dc3}", todayWeather.getForecast1d().get(2).getDayIcon())
+                .replace("{dc4}", todayWeather.getForecast1d().get(3).getDayIcon())
+                .replace("{dc5}", todayWeather.getForecast1d().get(4).getDayIcon())
+                .replace("{dd1}", todayWeather.getForecast1d().get(0).getMaxDegree())
+                .replace("{dd2}", todayWeather.getForecast1d().get(1).getMaxDegree())
+                .replace("{dd3}", todayWeather.getForecast1d().get(2).getMaxDegree())
+                .replace("{dd4}", todayWeather.getForecast1d().get(3).getMaxDegree())
+                .replace("{dd5}", todayWeather.getForecast1d().get(4).getMaxDegree())
+                .replace("{nd1}", todayWeather.getForecast1d().get(0).getMinDegree())
+                .replace("{nd2}", todayWeather.getForecast1d().get(1).getMinDegree())
+                .replace("{nd3}", todayWeather.getForecast1d().get(2).getMinDegree())
+                .replace("{nd4}", todayWeather.getForecast1d().get(3).getMinDegree())
+                .replace("{nd5}", todayWeather.getForecast1d().get(4).getMinDegree())
+                .replace("{nc1}", todayWeather.getForecast1d().get(0).getNightIcon())
+                .replace("{nc2}", todayWeather.getForecast1d().get(1).getNightIcon())
+                .replace("{nc3}", todayWeather.getForecast1d().get(2).getNightIcon())
+                .replace("{nc4}", todayWeather.getForecast1d().get(3).getNightIcon())
+                .replace("{nc5}", todayWeather.getForecast1d().get(4).getNightIcon())
+                .replace("{nw1}", todayWeather.getForecast1d().get(0).getNightWeatherShort())
+                .replace("{nw2}", todayWeather.getForecast1d().get(1).getNightWeatherShort())
+                .replace("{nw3}", todayWeather.getForecast1d().get(2).getNightWeatherShort())
+                .replace("{nw4}", todayWeather.getForecast1d().get(3).getNightWeatherShort())
+                .replace("{nw5}", todayWeather.getForecast1d().get(4).getNightWeatherShort());
         return text;
     }
 

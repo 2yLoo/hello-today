@@ -5,7 +5,7 @@ import com.yy.hellotoday.model.TodayWeather;
 /**
  * 描述: 今日服务类接口
  *
- * @author yangyang.luo
+ * @author 2yLoo
  * @create 2019-05-11 21:47
  */
 public interface TodayService {
