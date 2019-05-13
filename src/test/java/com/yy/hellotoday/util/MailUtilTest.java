@@ -50,7 +50,7 @@ public class MailUtilTest extends HelloTodayWeatherApplicationTests {
             helper.setTo(to);
             helper.setSubject(title);
 
-            String text = genText(todayService.getTodayWeather("2019-05-11"));
+            String text = genText(todayService.getTodayWeather("2019-05-13"));
             helper.setText(text, true);
 
             // FileSystemResource fileSystemResource=new FileSystemResource(new File("D:\76678.pdf"))
@@ -64,8 +64,8 @@ public class MailUtilTest extends HelloTodayWeatherApplicationTests {
     private String genText(TodayWeather todayWeather) {
         String degree = todayWeather.getDegree();
         String icon = todayWeather.getIcon();
-        String tip1 = todayWeather.getTips().get(0).getTip();
-        String tip2 = todayWeather.getTips().get(1).getTip();
+        // String tip1 = todayWeather.getTips().get(0).getTip();
+        // String tip2 = todayWeather.getTips().get(1).getTip();
         String humidity = todayWeather.getHumidity();
         String weather = todayWeather.getWeather();
 
@@ -76,8 +76,8 @@ public class MailUtilTest extends HelloTodayWeatherApplicationTests {
                 .replace("{weather}", weather)
                 .replace("{wd}", todayWeather.getWindDirection())
                 .replace("{wp}", todayWeather.getWindPower())
-                .replace("{tip1}", tip1)
-                .replace("{tip2}", tip2)
+                // .replace("{tip1}", tip1)
+                // .replace("{tip2}", tip2)
                 .replace("{oneImg}", todayWeather.getImage())
                 .replace("{oneContent}", todayWeather.getContent())
                 .replace("{ht1}", todayWeather.getForecast1h().get(0).getTime())
@@ -196,10 +196,10 @@ public class MailUtilTest extends HelloTodayWeatherApplicationTests {
             "</tr>\n" +
             "<tr>\n" +
             "  <td align=\"center\"><img hight=30 width=30 src=\"{dc1}\"/></td>\n" +
-            "  <td align=\"center\"><img hight=30 width=30 src=\"{dc1}\"/></td>\n" +
-            "  <td align=\"center\"><img hight=30 width=30 src=\"{dc1}\"/></td>\n" +
-            "  <td align=\"center\"><img hight=30 width=30 src=\"{dc1}\"/></td>\n" +
-            "  <td align=\"center\"><img hight=30 width=30 src=\"{dc1}\"/></td>\n" +
+            "  <td align=\"center\"><img hight=30 width=30 src=\"{dc2}\"/></td>\n" +
+            "  <td align=\"center\"><img hight=30 width=30 src=\"{dc3}\"/></td>\n" +
+            "  <td align=\"center\"><img hight=30 width=30 src=\"{dc4}\"/></td>\n" +
+            "  <td align=\"center\"><img hight=30 width=30 src=\"{dc5}\"/></td>\n" +
             "</tr>\n" +
             "<br><br>\n" +
             "<tr>\n" +

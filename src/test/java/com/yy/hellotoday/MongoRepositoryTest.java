@@ -26,7 +26,6 @@ public class MongoRepositoryTest extends HelloTodayWeatherApplicationTests {
     @Test
     public void testSaveOneDay(){
         Couple couple = new Couple();
-        couple.setUs("test");
         couple.setMyBirthday(new Date());
         couple.setYourBirthday(new Date());
         couple.setWedding(new Date());
