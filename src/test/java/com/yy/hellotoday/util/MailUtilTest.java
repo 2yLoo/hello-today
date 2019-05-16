@@ -50,7 +50,8 @@ public class MailUtilTest extends HelloTodayWeatherApplicationTests {
             helper.setTo(to);
             helper.setSubject(title);
 
-            String text = genText(todayService.getTodayWeather("2019-05-13"));
+            // String text = genText(todayService.getTodayWeather("2019-05-13"));
+            String text = "OK";
             helper.setText(text, true);
 
             // FileSystemResource fileSystemResource=new FileSystemResource(new File("D:\76678.pdf"))

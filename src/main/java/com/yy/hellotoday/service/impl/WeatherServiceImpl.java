@@ -36,7 +36,7 @@ public class WeatherServiceImpl implements WeatherService {
     private WeatherRepository weatherRepository;
 
     @Override
-    public Weather saveWeather(String province, String city, String county) throws IOException {
+    public Weather getAndSaveWeather(String province, String city, String county) throws IOException {
         OkHttpClient client = new OkHttpClient();
         // 省份与城市不可为空
         if (StringUtils.isEmpty(province) || StringUtils.isEmpty(city)){
@@ -65,7 +65,6 @@ public class WeatherServiceImpl implements WeatherService {
         if (result.contains("jQuery")){
             result = result.substring(result.indexOf("{"), result.lastIndexOf(")"));
         }
-        System.out.println(result);
         JSONObject dataJson = JSONObject.parseObject(result).getJSONObject("data");
         Weather7Day weather7Day = JSONObject.toJavaObject(dataJson, Weather7Day.class);
         Weather weather = convertWeather(weather7Day);
@@ -133,7 +132,7 @@ public class WeatherServiceImpl implements WeatherService {
         String icon = genIcon(day, weather7Day.getObserve().getWeatherCode());
         weather7Day.getObserve().setIcon(icon);
 
-        weather.setId(DateUtil.genDate());
+        weather.setDate(DateUtil.genDate());
         weather.setForecast1h(weatherPerHours);
         weather.setForecast1d(weatherPerDays);
         weather.setWeatherRise(rises);

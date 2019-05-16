@@ -25,16 +25,32 @@ public class Couple implements Serializable {
      * 你的邮箱，一夫一妻制
      */
     @Indexed(unique = true)
-    private String yourEmail;
+    private String urEmail;
     /**
      * 我的邮箱，一夫一妻制
      */
     @Indexed(unique = true)
     private String myEmail;
     /**
+     * 你的省份
+     */
+    private String urProvince;
+    /**
+     * 你的市区
+     */
+    private String urCity;
+    /**
+     * 你的县区
+     */
+    private String urCounty;
+    /**
+     * 邮件标题
+     */
+    private String emailTitle;
+    /**
      * 你的昵称
      */
-    private String yourName;
+    private String urName;
     /**
      * 我的昵称
      */
@@ -42,19 +58,19 @@ public class Couple implements Serializable {
     /**
      * 妳的生日
      */
-    private Date yourBirthday;
+    private String urBirthday;
     /**
      * 我的生日
      */
-    private Date myBirthday;
+    private String myBirthday;
     /**
      * 第一天在一起
      */
-    private Date together;
+    private String together;
     /**
      * 结婚日期
      */
-    private Date wedding;
+    private String wedding;
 
     public String getId() {
         return id;
@@ -64,12 +80,12 @@ public class Couple implements Serializable {
         this.id = id;
     }
 
-    public String getYourEmail() {
-        return yourEmail;
+    public String getUrEmail() {
+        return urEmail;
     }
 
-    public void setYourEmail(String yourEmail) {
-        this.yourEmail = yourEmail;
+    public void setUrEmail(String urEmail) {
+        this.urEmail = urEmail;
     }
 
     public String getMyEmail() {
@@ -80,12 +96,44 @@ public class Couple implements Serializable {
         this.myEmail = myEmail;
     }
 
-    public String getYourName() {
-        return yourName;
+    public String getUrProvince() {
+        return urProvince;
     }
 
-    public void setYourName(String yourName) {
-        this.yourName = yourName;
+    public void setUrProvince(String urProvince) {
+        this.urProvince = urProvince;
+    }
+
+    public String getUrCity() {
+        return urCity;
+    }
+
+    public void setUrCity(String urCity) {
+        this.urCity = urCity;
+    }
+
+    public String getUrCounty() {
+        return urCounty;
+    }
+
+    public void setUrCounty(String urCounty) {
+        this.urCounty = urCounty;
+    }
+
+    public String getEmailTitle() {
+        return emailTitle;
+    }
+
+    public void setEmailTitle(String emailTitle) {
+        this.emailTitle = emailTitle;
+    }
+
+    public String getUrName() {
+        return urName;
+    }
+
+    public void setUrName(String urName) {
+        this.urName = urName;
     }
 
     public String getMyName() {
@@ -96,50 +144,35 @@ public class Couple implements Serializable {
         this.myName = myName;
     }
 
-    public Date getYourBirthday() {
-        return yourBirthday;
+    public String getUrBirthday() {
+        return urBirthday;
     }
 
-    public void setYourBirthday(Date yourBirthday) {
-        this.yourBirthday = yourBirthday;
+    public void setUrBirthday(String urBirthday) {
+        this.urBirthday = urBirthday;
     }
 
-    public Date getMyBirthday() {
+    public String getMyBirthday() {
         return myBirthday;
     }
 
-    public void setMyBirthday(Date myBirthday) {
+    public void setMyBirthday(String myBirthday) {
         this.myBirthday = myBirthday;
     }
 
-    public Date getTogether() {
+    public String getTogether() {
         return together;
     }
 
-    public void setTogether(Date together) {
+    public void setTogether(String together) {
         this.together = together;
     }
 
-    public Date getWedding() {
+    public String getWedding() {
         return wedding;
     }
 
-    public void setWedding(Date wedding) {
+    public void setWedding(String wedding) {
         this.wedding = wedding;
-    }
-
-    @Override
-    public String toString() {
-        return "Couple{" +
-                "id='" + id + '\'' +
-                ", yourEmail='" + yourEmail + '\'' +
-                ", myEmail='" + myEmail + '\'' +
-                ", yourName='" + yourName + '\'' +
-                ", myName='" + myName + '\'' +
-                ", yourBirthday=" + yourBirthday +
-                ", myBirthday=" + myBirthday +
-                ", together=" + together +
-                ", wedding=" + wedding +
-                '}';
     }
 }

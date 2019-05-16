@@ -2,6 +2,8 @@ package com.yy.hellotoday.service;
 
 import com.yy.hellotoday.model.TodayWeather;
 
+import java.util.List;
+
 /**
  * 描述: 今日服务类接口
  *
@@ -16,5 +18,9 @@ public interface TodayService {
      * @param date 日期，格式：yyyy-MM-dd
      * @return 今日天气信息
      */
-    TodayWeather getTodayWeather(String date);
+    // TodayWeather getTodayWeather(String date);
+
+    void saveTodayWeather();
+
+    List<TodayWeather> findByDate(String date);
 }

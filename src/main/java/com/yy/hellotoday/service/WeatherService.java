@@ -21,7 +21,7 @@ public interface WeatherService {
      * @return 天气信息
      * @throws IOException IO异常
      */
-    Weather saveWeather(String province, String city, String county) throws IOException;
+    Weather getAndSaveWeather(String province, String city, String county) throws IOException;
 
     /**
      * 获取天气信息

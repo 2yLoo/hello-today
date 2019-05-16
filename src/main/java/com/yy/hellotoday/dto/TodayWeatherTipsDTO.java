@@ -14,6 +14,17 @@ public class TodayWeatherTipsDTO implements Serializable {
 
     private String type;
 
+    private int priority;
+
+    public TodayWeatherTipsDTO() {
+    }
+
+    public TodayWeatherTipsDTO(String tip, String type, int priority) {
+        this.tip = tip;
+        this.type = type;
+        this.priority = priority;
+    }
+
     public String getTip() {
         return tip;
     }
@@ -30,11 +41,11 @@ public class TodayWeatherTipsDTO implements Serializable {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "TodayWeatherTipsDTO{" +
-                "tip='" + tip + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

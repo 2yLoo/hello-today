@@ -25,4 +25,10 @@ public class HelloTodayWeatherApplicationTests {
     }
 
 
+    @Test
+    public void test() {
+        emailUtil.test();
+    }
+
+
 }

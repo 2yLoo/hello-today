@@ -13,6 +13,8 @@ import java.util.Map;
  */
 public class Weather7Day {
 
+    // TODO: 2019-05-16 Alarm
+
     @JSONField(name = "forecast_1h")
     private Map<String, WeatherPerHour> forecast1h;
     @JSONField(name = "forecast_24h")

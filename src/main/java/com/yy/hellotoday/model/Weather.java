@@ -20,10 +20,10 @@ public class Weather implements Serializable {
     @Id
     private String id;
 
+    private String date;
+
     private List<WeatherPerHour> forecast1h;
 
-    // TODO: 2019-05-12 校验JSON转换
-    // @JSONField(name = "forecast24h")
     private List<WeatherPerDay> forecast1d;
 
     private WeatherIndex index;
@@ -38,6 +38,14 @@ public class Weather implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public List<WeatherPerHour> getForecast1h() {
@@ -78,17 +86,5 @@ public class Weather implements Serializable {
 
     public void setWeatherRise(List<WeatherRise> weatherRise) {
         this.weatherRise = weatherRise;
-    }
-
-    @Override
-    public String toString() {
-        return "Weather{" +
-                "id='" + id + '\'' +
-                ", forecast1h=" + forecast1h +
-                ", forecast1d=" + forecast1d +
-                ", index=" + index +
-                ", observe=" + observe +
-                ", weatherRise=" + weatherRise +
-                '}';
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.util.List;
 
 /**
  * 描述: 邮件工具类
@@ -37,7 +38,7 @@ public class EmailUtil {
     private CoupleService coupleService;
 
     private JavaMailSender javaMailSender;
-    
+
     @Autowired
     public EmailUtil(TodayService todayService, CoupleService coupleService, JavaMailSender javaMailSender) {
         this.todayService = todayService;
@@ -45,19 +46,41 @@ public class EmailUtil {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendTodayMail(){
+    public void sendTodayMail() {
         MimeMessage message = null;
-        TodayWeather todayWeather = todayService.getTodayWeather(DateUtil.genDate());
+        // TodayWeather todayWeather = todayService.getTodayWeather(DateUtil.genDate());
         Couple couple = coupleService.findByMyEmail(from);
 
         try {
+            List<TodayWeather> todayWeathers = todayService.findByDate(DateUtil.genDate());
+            for (TodayWeather todayWeather : todayWeathers) {
+                message = javaMailSender.createMimeMessage();
+                MimeMessageHelper helper = new MimeMessageHelper(message, true);
+                helper.setFrom(todayWeather.getSendFrom());
+                helper.setTo(todayWeather.getSendTo());
+                helper.setSubject(todayWeather.getTitle());
+                // 获取text后再循环生成tips
+                String text = genText(todayWeather);
+                helper.setText(text, true);
+                javaMailSender.send(message);
+            }
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void test() {
+        MimeMessage message = null;
+
+        try {
+            List<TodayWeather> todayWeathers = todayService.findByDate(DateUtil.genDate());
             message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom(todayWeather.getSendFrom());
-            helper.setTo(todayWeather.getSendTo());
-            helper.setSubject(todayWeather.getTitle());
+            helper.setFrom(from);
+            helper.setTo(to);
+            helper.setSubject(title);
             // 获取text后再循环生成tips
-            String text = genText(todayWeather);
+            String text = "test";
             helper.setText(text, true);
             javaMailSender.send(message);
         } catch (MessagingException e) {

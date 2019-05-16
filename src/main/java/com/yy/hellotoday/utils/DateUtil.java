@@ -1,6 +1,7 @@
 package com.yy.hellotoday.utils;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,6 +49,17 @@ public class DateUtil {
                 .getTime().getTime() / 1000)) / 3600 / 24;
 
         return days;
+    }
+
+    public static Date parseDate(String str) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = format.parse(str);
+        }catch (ParseException e){
+            System.out.println("日期解析异常");
+        }
+        return date;
     }
 
     public static int daysPerYearBetween(Date early, Date late) {

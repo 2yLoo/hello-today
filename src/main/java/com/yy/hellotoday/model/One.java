@@ -1,5 +1,6 @@
 package com.yy.hellotoday.model;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -17,6 +18,12 @@ public class One implements Serializable {
      */
     private String id;
     /**
+     * 日期
+     */
+    // TODO: 2019-05-16 日期唯一
+    @Indexed
+    private String date;
+    /**
      * 图片地址
      */
     private String image;
@@ -28,10 +35,18 @@ public class One implements Serializable {
     public One() {
     }
 
-    public One(String id, String image, String content) {
-        this.id = id;
+    public One(String date, String image, String content) {
+        this.date = date;
         this.image = image;
         this.content = content;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getId() {

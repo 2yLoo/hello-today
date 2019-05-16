@@ -12,7 +12,5 @@ import java.io.IOException;
  */
 public interface OneService {
 
-    One saveOne() throws IOException;
-
-    One getOne(String date);
+    One getAndSaveOne() throws IOException;
 }

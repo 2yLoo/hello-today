@@ -29,17 +29,12 @@ public class OneServiceImpl implements OneService {
     }
 
     @Override
-    public One saveOne() throws IOException {
+    public One getAndSaveOne() throws IOException{
         Document document = Jsoup.connect("http://wufazhuce.com/").get();
         Elements first = document.select("div[class=\"item active\"]").first().select("a");
         String img = first.select("img").attr("src");
         String content = first.get(1).text();
         One one = new One(DateUtil.genDate(), img, content);
         return oneRepository.save(one);
-    }
-
-    @Override
-    public One getOne(String date) {
-        return oneRepository.findOneByIdIs(date);
     }
 }

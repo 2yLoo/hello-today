@@ -1,5 +1,6 @@
 package com.yy.hellotoday;
 
+import com.yy.hellotoday.utils.DateUtil;
 import org.junit.Test;
 
 import java.util.Date;
@@ -15,6 +16,8 @@ public class BaseTest {
     @Test
     public void testDate(){
         Date date = new Date();
+        String a = DateUtil.genDate();
+        System.out.println(a.substring(5));
     }
 
 }
