@@ -136,8 +136,8 @@ public class EmailServiceImpl implements EmailService {
             "\n" +
             "<body>\n" +
             "<div>\n" +
-            "<a><font face=\"verdana\" size=\"18\">{degree}°</font></a>\n" +
-            "<img align=\"right\"  hight=100 width=100 src=\"{icon}\"/>\n" +
+            "<a><font face=\"verdana\" size=\"18\">{degree}°</font><img align=\"float:right\"  hight=100 width=100 src=\"{icon}\"/></a>\n" +
+            // "<img align=\"right\"  hight=100 width=100 src=\"{icon}\"/>\n" +
             "<a><font face=\"arial\" size=\"3\">{wd} {wp}级</font>&nbsp;<font face=\"arial\" size=\"3\">湿度 {humidity}%</font></a>\n" +
             "<br>\n" +
             "<a><font face=\"arial\" size=\"1\">{tip1}</font></a>\n" +
@@ -231,10 +231,10 @@ public class EmailServiceImpl implements EmailService {
             "</table>\n" +
             "<br><br>\n" +
             "<br><br>\n" +
-            "<img src=\"{oneImg}\"/>\n" +
+            "<img align=\"middle\" src=\"{oneImg}\"/>\n" +
             "</div>\n" +
             "<h5>{oneContent}</h5>\n" +
-            "<h5 align=\"right\">Technical support:Tencent & ONE</h5>\n" +
+            "<h5 align=\"right\"> Data provided by Tencent & ONE</h5>\n" +
             "<h5 align=\"right\">From Your Piggy\uD83D\uDC37</h5>" +
             "</body>\n" +
             "</html>\n";
