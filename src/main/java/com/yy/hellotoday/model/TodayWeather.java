@@ -29,6 +29,10 @@ public class TodayWeather implements Serializable {
      */
     private String sendFrom;
     /**
+     * 发送者名称
+     */
+    private String sender;
+    /**
      * 收件人
      */
     private String sendTo;
@@ -103,6 +107,14 @@ public class TodayWeather implements Serializable {
 
     public void setSendFrom(String sendFrom) {
         this.sendFrom = sendFrom;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     public String getSendTo() {
@@ -215,6 +227,7 @@ public class TodayWeather implements Serializable {
                 "id='" + id + '\'' +
                 ", date='" + date + '\'' +
                 ", sendFrom='" + sendFrom + '\'' +
+                ", sender='" + sender + '\'' +
                 ", sendTo='" + sendTo + '\'' +
                 ", title='" + title + '\'' +
                 ", degree='" + degree + '\'' +

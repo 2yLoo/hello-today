@@ -1,8 +1,6 @@
 package com.yy.hellotoday.utils;
 
-import com.yy.hellotoday.model.Couple;
 import com.yy.hellotoday.model.TodayWeather;
-import com.yy.hellotoday.service.CoupleService;
 import com.yy.hellotoday.service.TodayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -26,37 +25,34 @@ public class EmailUtil {
     @Value("${email.send.from}")
     private String from;
 
+    @Value("${email.send.name}")
+    private String sender;
+
     @Value("${email.send.to}")
     private String to;
 
     @Value("${email.title}")
     private String title;
 
-    private TodayService todayService;
 
-    // TODO: 2019-05-12 将天气对象组合好后再进行循环的邮件发送
-    private CoupleService coupleService;
+
+    private TodayService todayService;
 
     private JavaMailSender javaMailSender;
 
     @Autowired
-    public EmailUtil(TodayService todayService, CoupleService coupleService, JavaMailSender javaMailSender) {
+    public EmailUtil(TodayService todayService, JavaMailSender javaMailSender) {
         this.todayService = todayService;
-        this.coupleService = coupleService;
         this.javaMailSender = javaMailSender;
     }
 
     public void sendTodayMail() {
-        MimeMessage message = null;
-        // TodayWeather todayWeather = todayService.getTodayWeather(DateUtil.genDate());
-        Couple couple = coupleService.findByMyEmail(from);
-
         try {
             List<TodayWeather> todayWeathers = todayService.findByDate(DateUtil.genDate());
             for (TodayWeather todayWeather : todayWeathers) {
-                message = javaMailSender.createMimeMessage();
+                MimeMessage message = javaMailSender.createMimeMessage();
                 MimeMessageHelper helper = new MimeMessageHelper(message, true);
-                helper.setFrom(todayWeather.getSendFrom());
+                helper.setFrom(todayWeather.getSendFrom(), todayWeather.getSender());
                 helper.setTo(todayWeather.getSendTo());
                 helper.setSubject(todayWeather.getTitle());
                 // 获取text后再循环生成tips
@@ -65,18 +61,20 @@ public class EmailUtil {
                 javaMailSender.send(message);
             }
         } catch (MessagingException e) {
+            System.out.println("邮件发送异常：");
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("名称解析异常");
             e.printStackTrace();
         }
     }
 
     public void test() {
-        MimeMessage message = null;
-
         try {
             List<TodayWeather> todayWeathers = todayService.findByDate(DateUtil.genDate());
-            message = javaMailSender.createMimeMessage();
+            MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom(from);
+            helper.setFrom(from, sender);
             helper.setTo(to);
             helper.setSubject(title);
             // 获取text后再循环生成tips
@@ -84,6 +82,8 @@ public class EmailUtil {
             helper.setText(text, true);
             javaMailSender.send(message);
         } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }

@@ -29,12 +29,13 @@ public class EmailJob {
         this.emailUtil = emailUtil;
     }
 
+    // 秒 分 时 日期 月份 星期 年（可选）
     @Scheduled(cron = "0 0 8 * * ?")
     public void emailEveryday(){
         emailUtil.sendTodayMail();
     }
 
-    @Scheduled(cron = "*/10 * 0 * * ?")
+    @Scheduled(cron = "*/15 * * * * ?")
     public void test(){
         emailUtil.test();
     }

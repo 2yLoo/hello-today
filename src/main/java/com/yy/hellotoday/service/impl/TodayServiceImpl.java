@@ -65,7 +65,7 @@ public class TodayServiceImpl implements TodayService {
     }
 
     @Override
-    public List<TodayWeather> findByDate(String date){
+    public List<TodayWeather> findByDate(String date) {
         return todayWeatherRepository.findAllByDate(date);
     }
 
@@ -76,6 +76,7 @@ public class TodayServiceImpl implements TodayService {
 
         // Couple信息
         todayWeather.setSendFrom(couple.getMyEmail());
+        todayWeather.setSender(couple.getMyName());
         todayWeather.setSendTo(couple.getUrEmail());
         todayWeather.setTitle(couple.getEmailTitle());
 
@@ -150,9 +151,9 @@ public class TodayServiceImpl implements TodayService {
         todayWeather.setTips(tips);
 
         TodayWeather dbResult = todayWeatherRepository.findBySendToAndDate(todayWeather.getSendTo(), todayWeather.getDate());
-        if (dbResult == null){
+        if (dbResult == null) {
             todayWeather = todayWeatherRepository.save(todayWeather);
-        }else {
+        } else {
             todayWeather = dbResult;
         }
 
