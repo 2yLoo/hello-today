@@ -201,6 +201,9 @@ public class TodayServiceImpl implements TodayService {
         return windDirection;
     }
 
+    /**
+     * 保证至少有两条Tip，优先级从高到低为 警报 > 生日 > 纪念日 > 节日 > 天气
+     */
     private List<TodayWeatherTipsDTO> genTips(Couple couple, Weather weather, String date) {
 
         List<TodayWeatherTipsDTO> tips = new ArrayList<>();
@@ -216,17 +219,17 @@ public class TodayServiceImpl implements TodayService {
             tips.add(tip);
         }
 
+        String togetherTip = getTogetherTip(couple.getTogether());
+        if (!StringUtils.isEmpty(togetherTip)) {
+            TodayWeatherTipsDTO tip = new TodayWeatherTipsDTO(togetherTip, "Sweet", 1);
+            tips.add(tip);
+        }
+
         if (date.endsWith(TipConstant.FIVE_TWENTY)) {
             TodayWeatherTipsDTO tip = new TodayWeatherTipsDTO("心中明月，我爱你", "Sweet", 1);
             tips.add(tip);
         } else if (date.endsWith(TipConstant.VALENTINE)) {
             TodayWeatherTipsDTO tip = new TodayWeatherTipsDTO("送你一束小fafa🌺，Happy Valentine's Day!", "Sweet", 1);
-            tips.add(tip);
-        }
-
-        String togetherTip = getTogetherTip(couple.getTogether());
-        if (!StringUtils.isEmpty(togetherTip)) {
-            TodayWeatherTipsDTO tip = new TodayWeatherTipsDTO(togetherTip, "Sweet", 1);
             tips.add(tip);
         }
 
@@ -252,6 +255,9 @@ public class TodayServiceImpl implements TodayService {
             TodayWeatherTipsDTO tip = new TodayWeatherTipsDTO(weather.getIndex().getMakeup().getDetail(), "Weather", 2);
             tips.add(tip);
         }
+        // 运动提醒
+        TodayWeatherTipsDTO tip = new TodayWeatherTipsDTO(weather.getIndex().getSports().getDetail(), "Weather", 2);
+        tips.add(tip);
 
         return tips;
     }
@@ -277,9 +283,6 @@ public class TodayServiceImpl implements TodayService {
         } else if (dayNum == 0) {
             tip = "约吗？";
         }
-
-        // 不设置我的生日提醒
-        tip = null;
         return tip;
     }
 
