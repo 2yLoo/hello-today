@@ -23,13 +23,5 @@ public interface WeatherService {
      */
     Weather getAndSaveWeather(String province, String city, String county) throws IOException;
 
-    /**
-     * 获取天气信息
-     *
-     * @param date 日期，格式：yyyy-MM-dd
-     * @return 天气信息
-     */
-    Weather getWeather(String date);
-
 
 }

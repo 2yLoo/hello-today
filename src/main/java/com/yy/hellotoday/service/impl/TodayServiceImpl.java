@@ -44,7 +44,8 @@ public class TodayServiceImpl implements TodayService {
     private TodayWeatherRepository todayWeatherRepository;
 
     @Override
-    public void saveTodayWeather() {
+    public void saveTodayWeathers() {
+        TodayWeather todayWeather = null;
         List<Couple> couples = coupleService.findAll();
         final String date = DateUtil.genDate();
         try {
@@ -52,8 +53,7 @@ public class TodayServiceImpl implements TodayService {
             for (Couple couple : couples) {
                 try {
                     Weather weather = weatherService.getAndSaveWeather(couple.getUrProvince(), couple.getUrCity(), couple.getUrCounty());
-
-                    TodayWeather todayWeather = saveTodayWeather(couple, weather, one, date);
+                    todayWeather = saveTodayWeather(couple, weather, one, date);
                 } catch (IOException e) {
                     System.out.println("天气获取异常");
                 }
@@ -61,7 +61,6 @@ public class TodayServiceImpl implements TodayService {
         } catch (IOException e) {
             System.out.println("一个获取异常");
         }
-
     }
 
     @Override

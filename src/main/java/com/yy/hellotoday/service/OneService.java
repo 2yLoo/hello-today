@@ -12,5 +12,11 @@ import java.io.IOException;
  */
 public interface OneService {
 
+    /**
+     * 获取并保存《一个》数据
+     *
+     * @return 《一个》数据
+     * @throws IOException IO异常 TODO: 2019-05-17 替换为异常体系
+     */
     One getAndSaveOne() throws IOException;
 }

@@ -1,8 +1,8 @@
 package com.yy.hellotoday.job;
 
+import com.yy.hellotoday.model.TodayWeather;
+import com.yy.hellotoday.service.EmailService;
 import com.yy.hellotoday.service.TodayService;
-import com.yy.hellotoday.service.WeatherService;
-import com.yy.hellotoday.utils.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,32 +16,31 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 public class EmailJob {
 
-    private WeatherService weatherService;
-
-    private EmailUtil emailUtil;
+    private EmailService emailService;
 
     @Autowired
     private TodayService todayService;
 
     @Autowired
-    public EmailJob(WeatherService weatherService, EmailUtil emailUtil) {
-        this.weatherService = weatherService;
-        this.emailUtil = emailUtil;
+    public EmailJob(EmailService emailService) {
+        this.emailService = emailService;
     }
 
     // 秒 分 时 日期 月份 星期 年（可选）
-    @Scheduled(cron = "0 0 8 * * ?")
-    public void emailEveryday(){
-        emailUtil.sendTodayMail();
+    @Scheduled(cron = "0 0 8 20-30 * ?")
+    public void emailEveryday() {
+        emailService.sendTodayMail();
+    }
+
+    @Scheduled(cron = "0 45 7 * * ?")
+    public void saveTodayWeather() {
+        todayService.saveTodayWeathers();
+            // TODO: 2019-05-17 爬取异常
     }
 
     @Scheduled(cron = "*/15 * * * * ?")
-    public void test(){
-        emailUtil.test();
-    }
-
-    public void saveWeather(){
-        todayService.saveTodayWeather();
+    public void test() {
+        emailService.test();
     }
 
 }

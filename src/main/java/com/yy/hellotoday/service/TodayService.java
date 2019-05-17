@@ -13,14 +13,15 @@ import java.util.List;
 public interface TodayService {
 
     /**
-     * 获取今日天气信息
-     *
-     * @param date 日期，格式：yyyy-MM-dd
-     * @return 今日天气信息
+     * 保存今日数据
      */
-    // TodayWeather getTodayWeather(String date);
+    void saveTodayWeathers();
 
-    void saveTodayWeather();
-
+    /**
+     * 获取指定日期今日数据
+     *
+     * @param date 日期格式为：yyyy-MM-dd
+     * @return 今日天气数据列表
+     */
     List<TodayWeather> findByDate(String date);
 }

@@ -38,6 +38,6 @@ public class ServiceTest extends HelloTodayWeatherApplicationTests {
 
     @Test
     public void testSaveTodayWeather() {
-        todayService.saveTodayWeather();
+        todayService.saveTodayWeathers();
     }
 }

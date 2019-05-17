@@ -71,11 +71,6 @@ public class WeatherServiceImpl implements WeatherService {
         return weatherRepository.save(weather);
     }
 
-    @Override
-    public Weather getWeather(String date){
-        return weatherRepository.findWeatherByIdIs(date);
-    }
-
     private Weather convertWeather(Weather7Day weather7Day) {
         Weather weather = new Weather();
 
@@ -125,10 +120,7 @@ public class WeatherServiceImpl implements WeatherService {
             weatherPerDay.setNightIcon(nightIcon);
         }
         int time = Integer.valueOf(weather7Day.getObserve().getUpdateTime().substring(8));
-        day = false;
-        if ((node1 < time && time < node2) || (node3 < time && time < node4)) {
-            day = true;
-        }
+        day = (node1 < time && time < node2) || (node3 < time && time < node4);
         String icon = genIcon(day, weather7Day.getObserve().getWeatherCode());
         weather7Day.getObserve().setIcon(icon);
 
