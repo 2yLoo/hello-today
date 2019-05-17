@@ -136,8 +136,8 @@ public class EmailServiceImpl implements EmailService {
             "\n" +
             "<body>\n" +
             "<div>\n" +
-            "<a><font face=\"verdana\" size=\"18\">{degree}°</font><img align=\"float:right\"  hight=100 width=100 src=\"{icon}\"/></a>\n" +
-            // "<img align=\"right\"  hight=100 width=100 src=\"{icon}\"/>\n" +
+            "<a><font face=\"verdana\" size=\"18\">{degree}°</font></a>\n" +
+            "<img align=\"right\"  hight=100 width=100 src=\"{icon}\"/>\n" +
             "<a><font face=\"arial\" size=\"3\">{wd} {wp}级</font>&nbsp;<font face=\"arial\" size=\"3\">湿度 {humidity}%</font></a>\n" +
             "<br>\n" +
             "<a><font face=\"arial\" size=\"1\">{tip1}</font></a>\n" +
@@ -146,7 +146,7 @@ public class EmailServiceImpl implements EmailService {
             "</div>\n" +
             "<br>\n" +
             "<div>\n" +
-            "<table border=\"0\" width=\"700\" >\n" +
+            "<table border=\"0\" width=\"100%\" >\n" +
             "<tr>\n" +
             "  <td align=\"center\">{ht1}</td>\n" +
             "  <td align=\"center\">{ht2}</td>\n" +
@@ -176,7 +176,7 @@ public class EmailServiceImpl implements EmailService {
             "</table>\n" +
             "</div>\n" +
             "<div>\n" +
-            "<table border=\"0\" width=\"700\" align=\"left\">\n" +
+            "<table border=\"0\" width=\"100%\" align=\"left\">\n" +
             "<tr>\n" +
             "  <td align=\"center\">昨天的</td>\n" +
             "  <td align=\"center\">今天的</td>\n" +
@@ -231,7 +231,7 @@ public class EmailServiceImpl implements EmailService {
             "</table>\n" +
             "<br><br>\n" +
             "<br><br>\n" +
-            "<img align=\"middle\" src=\"{oneImg}\"/>\n" +
+            "<img style=\"width=100%\" src=\"{oneImg}\"/>\n" +
             "</div>\n" +
             "<h5>{oneContent}</h5>\n" +
             "<h5 align=\"right\"> Data provided by Tencent & ONE</h5>\n" +

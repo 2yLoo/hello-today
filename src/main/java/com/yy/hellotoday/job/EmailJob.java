@@ -37,7 +37,7 @@ public class EmailJob {
         // TODO: 2019-05-17 爬取异常
     }
 
-    @Scheduled(cron = "*/15 * * * * ?")
+    // @Scheduled(cron = "*/15 * * * * ?")
     public void test() {
         emailService.test();
     }
