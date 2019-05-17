@@ -140,9 +140,9 @@ public class EmailServiceImpl implements EmailService {
             "<img align=\"right\"  hight=100 width=100 src=\"{icon}\"/>\n" +
             "<a><font face=\"arial\" size=\"3\">{wd} {wp}级</font>&nbsp;<font face=\"arial\" size=\"3\">湿度 {humidity}%</font></a>\n" +
             "<br>\n" +
-            "<a><font face=\"arial\" size=\"4\">{tip1}</font></a>\n" +
+            "<a><font face=\"arial\" size=\"1\">{tip1}</font></a>\n" +
             "<br>\n" +
-            "<a><font face=\"arial\" size=\"4\">{tip2}</font></a>\n" +
+            "<a><font face=\"arial\" size=\"1\">{tip2}</font></a>\n" +
             "</div>\n" +
             "<br>\n" +
             "<div>\n" +
