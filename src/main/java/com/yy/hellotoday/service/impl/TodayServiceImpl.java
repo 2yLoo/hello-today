@@ -87,7 +87,6 @@ public class TodayServiceImpl implements TodayService {
         todayWeather.setSendTo(couple.getUrEmail());
         todayWeather.setTitle(couple.getEmailTitle());
 
-
         // 《一个》图片及文案
         todayWeather.setImage(one.getImage());
         todayWeather.setContent(one.getContent());
@@ -121,15 +120,15 @@ public class TodayServiceImpl implements TodayService {
             TodayWeatherHourDTO dto = null;
             String time = weatherPerHour.getUpdateTime();
             if (eight.equals(time)) {
-                dto = new TodayWeatherHourDTO("08:00", weatherPerHour.getIcon(), weatherPerHour.getDegree());
+                dto = new TodayWeatherHourDTO("08:00", weatherPerHour.getIcon(), weatherPerHour.getDegree() + "°");
             } else if (twelve.equals(time)) {
-                dto = new TodayWeatherHourDTO("12:00", weatherPerHour.getIcon(), weatherPerHour.getDegree());
+                dto = new TodayWeatherHourDTO("12:00", weatherPerHour.getIcon(), weatherPerHour.getDegree() + "°");
             } else if (fifteen.equals(time)) {
-                dto = new TodayWeatherHourDTO("15:00", weatherPerHour.getIcon(), weatherPerHour.getDegree());
+                dto = new TodayWeatherHourDTO("15:00", weatherPerHour.getIcon(), weatherPerHour.getDegree() + "°");
             } else if (eighteen.equals(time)) {
-                dto = new TodayWeatherHourDTO("18:00", weatherPerHour.getIcon(), weatherPerHour.getDegree());
+                dto = new TodayWeatherHourDTO("18:00", weatherPerHour.getIcon(), weatherPerHour.getDegree() + "°");
             } else if (twentyOne.equals(time)) {
-                dto = new TodayWeatherHourDTO("21:00", weatherPerHour.getIcon(), weatherPerHour.getDegree());
+                dto = new TodayWeatherHourDTO("21:00", weatherPerHour.getIcon(), weatherPerHour.getDegree() + "°");
                 hourDTOList.add(dto);
                 break;
             }
