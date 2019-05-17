@@ -66,4 +66,14 @@ public class Weather7Day {
         this.rise = rise;
     }
 
+    @Override
+    public String toString() {
+        return "Weather7Day{" +
+                "forecast1h=" + forecast1h +
+                ", forecast24h=" + forecast24h +
+                ", index=" + index +
+                ", observe=" + observe +
+                ", rise=" + rise +
+                '}';
+    }
 }

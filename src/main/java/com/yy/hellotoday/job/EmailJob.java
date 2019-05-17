@@ -1,6 +1,5 @@
 package com.yy.hellotoday.job;
 
-import com.yy.hellotoday.model.TodayWeather;
 import com.yy.hellotoday.service.EmailService;
 import com.yy.hellotoday.service.TodayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +17,12 @@ public class EmailJob {
 
     private EmailService emailService;
 
-    @Autowired
     private TodayService todayService;
 
     @Autowired
-    public EmailJob(EmailService emailService) {
+    public EmailJob(EmailService emailService, TodayService todayService) {
         this.emailService = emailService;
+        this.todayService = todayService;
     }
 
     // 秒 分 时 日期 月份 星期 年（可选）
@@ -35,7 +34,7 @@ public class EmailJob {
     @Scheduled(cron = "0 45 7 * * ?")
     public void saveTodayWeather() {
         todayService.saveTodayWeathers();
-            // TODO: 2019-05-17 爬取异常
+        // TODO: 2019-05-17 爬取异常
     }
 
     @Scheduled(cron = "*/15 * * * * ?")

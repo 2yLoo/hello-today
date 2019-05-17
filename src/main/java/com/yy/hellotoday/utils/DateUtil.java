@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class DateUtil {
 
-    private static final ThreadLocal<DateFormat> dateFormatForDay = new ThreadLocal<DateFormat>(){
+    private static final ThreadLocal<DateFormat> dateFormatForDay = new ThreadLocal<DateFormat>() {
         @Override
         protected DateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd");
@@ -25,8 +25,8 @@ public class DateUtil {
     private DateUtil() {
     }
 
-    public static String genDate(){
-        if(dateFormatForDay.get() == null){
+    public static String genDate() {
+        if (dateFormatForDay.get() == null) {
             dateFormatForDay.set(new SimpleDateFormat("yyyy-MM-dd"));
         }
         return dateFormatForDay.get().format(new Date());
@@ -56,7 +56,7 @@ public class DateUtil {
         Date date = null;
         try {
             date = format.parse(str);
-        }catch (ParseException e){
+        } catch (ParseException e) {
             System.out.println("日期解析异常");
         }
         return date;

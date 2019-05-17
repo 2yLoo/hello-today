@@ -10,10 +10,17 @@ import java.io.Serializable;
  */
 public class TodayWeatherTipsDTO implements Serializable {
 
+    /**
+     * 提醒
+     */
     private String tip;
-
+    /**
+     * 类型
+     */
     private String type;
-
+    /**
+     * 优先级
+     */
     private int priority;
 
     public TodayWeatherTipsDTO() {
@@ -47,5 +54,14 @@ public class TodayWeatherTipsDTO implements Serializable {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public String toString() {
+        return "TodayWeatherTipsDTO{" +
+                "tip='" + tip + '\'' +
+                ", type='" + type + '\'' +
+                ", priority=" + priority +
+                '}';
     }
 }

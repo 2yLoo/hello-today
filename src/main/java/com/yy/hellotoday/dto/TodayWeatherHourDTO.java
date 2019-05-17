@@ -53,4 +53,13 @@ public class TodayWeatherHourDTO {
     public void setDegree(String degree) {
         this.degree = degree;
     }
+
+    @Override
+    public String toString() {
+        return "TodayWeatherHourDTO{" +
+                "time='" + time + '\'' +
+                ", icon='" + icon + '\'' +
+                ", degree='" + degree + '\'' +
+                '}';
+    }
 }

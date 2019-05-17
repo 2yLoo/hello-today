@@ -29,7 +29,7 @@ public class OneServiceImpl implements OneService {
     }
 
     @Override
-    public One getAndSaveOne() throws IOException{
+    public One getAndSaveOne() throws IOException {
         Document document = Jsoup.connect("http://wufazhuce.com/").get();
         Elements first = document.select("div[class=\"item active\"]").first().select("a");
         String img = first.select("img").attr("src");

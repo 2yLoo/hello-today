@@ -175,4 +175,23 @@ public class Couple implements Serializable {
     public void setWedding(String wedding) {
         this.wedding = wedding;
     }
+
+    @Override
+    public String toString() {
+        return "Couple{" +
+                "id='" + id + '\'' +
+                ", urEmail='" + urEmail + '\'' +
+                ", myEmail='" + myEmail + '\'' +
+                ", urProvince='" + urProvince + '\'' +
+                ", urCity='" + urCity + '\'' +
+                ", urCounty='" + urCounty + '\'' +
+                ", emailTitle='" + emailTitle + '\'' +
+                ", urName='" + urName + '\'' +
+                ", myName='" + myName + '\'' +
+                ", urBirthday='" + urBirthday + '\'' +
+                ", myBirthday='" + myBirthday + '\'' +
+                ", together='" + together + '\'' +
+                ", wedding='" + wedding + '\'' +
+                '}';
+    }
 }

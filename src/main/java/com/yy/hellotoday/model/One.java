@@ -77,6 +77,7 @@ public class One implements Serializable {
     public String toString() {
         return "One{" +
                 "id='" + id + '\'' +
+                ", date='" + date + '\'' +
                 ", image='" + image + '\'' +
                 ", content='" + content + '\'' +
                 '}';

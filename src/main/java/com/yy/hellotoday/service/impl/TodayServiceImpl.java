@@ -32,16 +32,24 @@ import java.util.*;
 @Service
 public class TodayServiceImpl implements TodayService {
 
-    @Autowired
     private CoupleService coupleService;
 
-    @Autowired
     private WeatherService weatherService;
-    @Autowired
+
     private OneService oneService;
 
-    @Autowired
     private TodayWeatherRepository todayWeatherRepository;
+
+    @Autowired
+    public TodayServiceImpl(CoupleService coupleService,
+                            WeatherService weatherService,
+                            OneService oneService,
+                            TodayWeatherRepository todayWeatherRepository) {
+        this.coupleService = coupleService;
+        this.weatherService = weatherService;
+        this.oneService = oneService;
+        this.todayWeatherRepository = todayWeatherRepository;
+    }
 
     @Override
     public void saveTodayWeathers() {
@@ -296,12 +304,5 @@ public class TodayServiceImpl implements TodayService {
     private String getWeddingTip(Date secret) {
         return "我们还莫有结婚";
     }
-
-    // @Override
-    // public TodayWeather getTodayWeather(String date) {
-    //     Weather weather = weatherService.getWeather(date);
-    //     One one = oneService.getOne(date);
-    //     return saveTodayWeather(weather, one, date);
-    // }
 
 }

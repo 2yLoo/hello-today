@@ -1,6 +1,5 @@
 package com.yy.hellotoday.model;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.yy.hellotoday.model.weather.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,17 +18,29 @@ public class Weather implements Serializable {
 
     @Id
     private String id;
-
+    /**
+     * 日期
+     */
     private String date;
-
+    /**
+     * 每小时天气
+     */
     private List<WeatherPerHour> forecast1h;
-
+    /**
+     * 每日天气
+     */
     private List<WeatherPerDay> forecast1d;
-
+    /**
+     * 天气提醒
+     */
     private WeatherIndex index;
-
+    /**
+     * 天气概览
+     */
     private WeatherObserve observe;
-
+    /**
+     * 日出日落
+     */
     private List<WeatherRise> weatherRise;
 
     public String getId() {
@@ -86,5 +97,18 @@ public class Weather implements Serializable {
 
     public void setWeatherRise(List<WeatherRise> weatherRise) {
         this.weatherRise = weatherRise;
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "id='" + id + '\'' +
+                ", date='" + date + '\'' +
+                ", forecast1h=" + forecast1h +
+                ", forecast1d=" + forecast1d +
+                ", index=" + index +
+                ", observe=" + observe +
+                ", weatherRise=" + weatherRise +
+                '}';
     }
 }

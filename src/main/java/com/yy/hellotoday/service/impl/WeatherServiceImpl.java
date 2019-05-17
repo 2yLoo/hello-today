@@ -32,14 +32,18 @@ import java.util.List;
 @Service
 public class WeatherServiceImpl implements WeatherService {
 
-    @Autowired
     private WeatherRepository weatherRepository;
+
+    @Autowired
+    public WeatherServiceImpl(WeatherRepository weatherRepository) {
+        this.weatherRepository = weatherRepository;
+    }
 
     @Override
     public Weather getAndSaveWeather(String province, String city, String county) throws IOException {
         OkHttpClient client = new OkHttpClient();
         // 省份与城市不可为空
-        if (StringUtils.isEmpty(province) || StringUtils.isEmpty(city)){
+        if (StringUtils.isEmpty(province) || StringUtils.isEmpty(city)) {
             province = WeatherConstant.DEFAULT_PROVINCE;
             city = WeatherConstant.DEFAULT_CITY;
             county = WeatherConstant.DEFAULT_COUNTY;
@@ -50,10 +54,10 @@ public class WeatherServiceImpl implements WeatherService {
         String params = String.format("&province=%s&city=%s", province, city);
         if (!StringUtils.isEmpty(county)) {
             county = URLEncoder.encode(county, "UTF-8");
-            params +="&county="+county;
+            params += "&county=" + county;
         }
 
-        String url = WeatherConstant.URL+params;
+        String url = WeatherConstant.URL + params;
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -62,7 +66,7 @@ public class WeatherServiceImpl implements WeatherService {
             throw new IOException("服务器端错误: " + response);
         }
         String result = response.body().string();
-        if (result.contains("jQuery")){
+        if (result.contains("jQuery")) {
             result = result.substring(result.indexOf("{"), result.lastIndexOf(")"));
         }
         JSONObject dataJson = JSONObject.parseObject(result).getJSONObject("data");

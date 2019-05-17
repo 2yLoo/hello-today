@@ -93,4 +93,16 @@ public class TodayWeatherDayDTO implements Serializable {
     public void setNightWeatherShort(String nightWeatherShort) {
         this.nightWeatherShort = nightWeatherShort;
     }
+
+    @Override
+    public String toString() {
+        return "TodayWeatherDayDTO{" +
+                "dayWeatherShort='" + dayWeatherShort + '\'' +
+                ", dayIcon='" + dayIcon + '\'' +
+                ", maxDegree='" + maxDegree + '\'' +
+                ", minDegree='" + minDegree + '\'' +
+                ", nightIcon='" + nightIcon + '\'' +
+                ", nightWeatherShort='" + nightWeatherShort + '\'' +
+                '}';
+    }
 }
